@@ -1,17 +1,16 @@
 package com.poja.prime.endpoint.rest.controller;
 
+import com.poja.prime.service.BigIntegerService;
+import lombok.Value;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import java.math.BigInteger;
-import java.util.Random;
 
 @RestController
+@Value
 public class PrimeController {
-
+    BigIntegerService service;
     @GetMapping(value = "/prime")
     public String generateNewPrime() {
-        BigInteger probablePrime = BigInteger.probablePrime(2048, new Random());
-        return probablePrime.toString();
+        return service.generatePrimeNumber();
     }
 }
